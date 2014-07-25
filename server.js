@@ -9,18 +9,21 @@ function start(route) {
     console.log("11  " + request.url)
 //    route(pathname);
 
+
+    //http://127.0.0.1:8888/index.js?foo=342
     var quary = url.parse(request.url).query;
     console.log("quary1  " + quary);
     var strfoo = querystring.parse(quary)["foo"];//["foo"];
     console.log("quary2  " + strfoo);
     console.log("quary3  " + querystring.parse(quary).foo);
 
-    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.writeHead(200, {"Content-Type": "application/json"});
 
     var retstring = querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
 
-    response.write("Hello World");
-    response.write(retstring);
+    var aad = querystring.stringify({"ccc":"Hello"});
+    response.write(aad);
+    // response.write(retstring);
     response.end();
   }
 
