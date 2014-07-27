@@ -7,3 +7,9 @@
 json 的 contentType 常见写法有 : text/json & text/javascript
 
 Content-Type="application/javascript"     text/javascript
+
+
+1.
+-g 要安装到系统的 bin/ 目录下需要权限
+sudo npm install -g supervisor
+supervisor  xx.js 替代 node xx.js不需要从新启动 nodejs 就可以看到结果

@@ -2,33 +2,53 @@ var http = require("http");
 var url = require("url");
 var querystring = require("querystring");
 
+
+//http://127.0.0.1:8888/index.js?foo=342&fbb=555
+/*
+request：发过来的请求
+response：返回过去的响应
+
+request.url：/index.js?foo=342&fbb=555
+url.parse(request.url).pathname：/index.js
+url.parse(request.url).query：foo=342&fbb=555
+
+var quary = url.parse(request.url).query
+querystring.parse(quary).foo
+querystring.parse(quary)["foo"]：342
+
+*/
 function start(route) {
-  function onRequest(request, response) {
+
+  function onRequest(request, response) {  
     var pathname = url.parse(request.url).pathname;
-    console.log("Request for " + pathname + " received.");
-    console.log("11  " + request.url)
-//    route(pathname);
+    
+    route(pathname);
 
-
-    //http://127.0.0.1:8888/index.js?foo=342
     var quary = url.parse(request.url).query;
-    console.log("quary1  " + quary);
-    var strfoo = querystring.parse(quary)["foo"];//["foo"];
-    console.log("quary2  " + strfoo);
-    console.log("quary3  " + querystring.parse(quary).foo);
+    var strfoo = querystring.parse(quary)["foo"];
 
-    response.writeHead(200, {"Content-Type": "application/json"});
 
     var retstring = querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
+    // var retstring = querystring.stringify({foo: "bar", baz: 'qux'}, ',', ':')
+    var retstring1 = querystring.parse('foo=bar&baz=qux&baz=quux&corge');
+    console.log(retstring1)
 
-    var aad = querystring.stringify({"ccc":"Hello"});
-    response.write(aad);
-    // response.write(retstring);
+
+var user = {  
+    PhoneNumber: '15210943874',  
+    authKey: 'fewfewf'  
+};
+
+
+    response.writeHead(200, {"Content-Type": "text/json & text/javascript"});
+    response.write(JSON.stringify(user));
     response.end();
   }
 
-  http.createServer(onRequest).listen(8888);
+
+  http.createServer(onRequest).listen(8887);
   console.log("Server has started.");
 }
+
 
 exports.start = start;
