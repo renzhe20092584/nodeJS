@@ -28,6 +28,14 @@ function start(route) {
     var strfoo = querystring.parse(quary)["foo"];
 
 
+
+    request.on('data', function (message) {  
+        var ret = eval('(' + message + ')');  
+        console.log('...', ret.tab1)
+        console.log('response : ' , ret);  
+    });
+
+
     var retstring = querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
     // var retstring = querystring.stringify({foo: "bar", baz: 'qux'}, ',', ':')
     var retstring1 = querystring.parse('foo=bar&baz=qux&baz=quux&corge');
