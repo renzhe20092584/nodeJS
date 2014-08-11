@@ -21,10 +21,10 @@ function start(route) {
 
   function onRequest(request, response) {  
     var pathname = url.parse(request.url).pathname;
-    
+    var quary = url.parse(request.url).query;
+
     route(pathname);
 
-    var quary = url.parse(request.url).query;
     var strfoo = querystring.parse(quary)["foo"];
 
 
@@ -39,13 +39,13 @@ function start(route) {
     var retstring = querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
     // var retstring = querystring.stringify({foo: "bar", baz: 'qux'}, ',', ':')
     var retstring1 = querystring.parse('foo=bar&baz=qux&baz=quux&corge');
-    console.log(retstring1)
+    console.log('url : ' + request.body)
 
 
-var user = {  
-    PhoneNumber: '15210943874',  
-    authKey: 'fewfewf'  
-};
+    var user = {  
+        PhoneNumber: '15210943874',  
+        authKey: 'fewfewf'  
+    };
 
 
     response.writeHead(200, {"Content-Type": "text/json & text/javascript"});
