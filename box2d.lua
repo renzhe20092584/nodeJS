@@ -17,11 +17,32 @@
 
 2.PhysicsBody getPhysicsBody 和 node 及其子类
 实体矩形					PhysicsBody::createBox
-空体矩形					PhysicsBody::createEdgeBox 			EdgeBox默认不受重力影像(静态刚体)
+空体box					PhysicsBody::createEdgeBox 			EdgeBox默认不受重力影像(静态刚体)
+空体矩形					PhysicsBody::createEdgeSegment
 圆						PhysicsBody::createCircle
 多边形					PhysicsBody::createPolygon
 静态刚体					setDynamic(false)
 不受重力影响				setGravityEnable(false)
+质量						setMass
+等等						setMoment
+加速度					setVelocity
+角速度					setAngularVelocity
+唯一标示					setTag
+
+
+PhysicsBody::create()				可以放多个刚体形状
+addShape							绘制刚体形状
+setCategoryBitmask(0x01)			设置掩码
+setCollisionBitmask
+setContactTestBitmask
+local2World							坐标转换
+getVelocityAtWorldPoint
+setPositionOffset					位置
+setRotationOffset					角度
+
+
+
+DrawNode、PhysicsBody、Node
 
 
 set/get方法来设置和获取
@@ -71,3 +92,5 @@ CC_ENABLE_BOX2D_INTEGRATION=1
 其他
 mac开启php server
 http://blog.csdn.net/u012945598/article/details/17162039
+
+NSLog(@"UniqueId: %@", [UIDevice currentDevice].identifierForVendor);
